@@ -44,6 +44,5 @@ public class InterfaceAspect {
     @AfterReturning(returning = "object",pointcut = "intercept()")
     public void doAfterReturning(Object object){
 
-        System.out.println("运行后");
     }
 }

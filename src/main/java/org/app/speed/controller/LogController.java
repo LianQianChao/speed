@@ -29,6 +29,10 @@ public class LogController {
 
     @GetMapping(value = "/log/{id}")
     public ResultUtil selectLogById(@PathVariable("id") Integer id){
-        return ResultUtil.success(logService.selectLogById(id));
+        logService.deleteLog(id);
+        return ResultUtil.success();
+//        return ResultUtil.success(logService.selectLogById(id));
     }
+
+
 }

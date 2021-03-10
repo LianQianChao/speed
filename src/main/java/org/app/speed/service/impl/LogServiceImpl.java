@@ -1,11 +1,14 @@
 package org.app.speed.service.impl;
 
+import org.app.speed.constant.enums.StatusEnum;
+import org.app.speed.exception.DefinitionException;
 import org.app.speed.mapper.LogMapper;
 import org.app.speed.model.pojo.Log;
 import org.app.speed.model.properties.RedisProperties;
 import org.app.speed.service.inft.LogService;
 import org.app.speed.service.inft.RedisService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -53,5 +56,13 @@ public class LogServiceImpl implements LogService {
             System.out.println("---获取缓存");
             return (Log) redisService.get(KEY);
         }
+    }
+
+    @Transactional
+    @Override
+    public void deleteLog(Integer id) {
+        int count = logMapper.deleteLog(id);
+        System.out.println(count);
+        throw new DefinitionException(StatusEnum.INTERNAL_SERVER_ERROR);
     }
 }

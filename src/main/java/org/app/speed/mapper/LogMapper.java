@@ -9,4 +9,6 @@ public interface LogMapper {
     List<Log> selectLog();
 
     Log selectLogById(Integer id);
+
+    int deleteLog(Integer id);
 }

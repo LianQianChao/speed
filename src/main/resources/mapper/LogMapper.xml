@@ -8,4 +8,8 @@
         select * from log
     </select>
 
+    <select id="selectLogById" resultType="Log" parameterType="Integer">
+        select * from log where id = #{id}
+    </select>
+
 </mapper>

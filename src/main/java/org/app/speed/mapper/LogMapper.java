@@ -9,4 +9,6 @@ import java.util.List;
 public interface LogMapper {
 
     List<Log> selectLog();
+
+    Log selectLogById(Integer id);
 }

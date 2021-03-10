@@ -8,4 +8,6 @@ import java.util.List;
 public interface LogService {
 
     List<Log> selectLog();
+
+    Log selectLogById(Integer id);
 }

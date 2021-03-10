@@ -1,13 +1,11 @@
 package org.app.speed.model.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Data;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-public class Log {
+import java.io.Serializable;
+
+@Data
+public class Log implements Serializable {
 
     private Integer id;
 

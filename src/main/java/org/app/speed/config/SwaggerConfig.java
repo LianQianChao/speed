@@ -20,7 +20,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 //为当前包下controller生成API文档
-                .apis(RequestHandlerSelectors.basePackage("com.lchao.speed.controller"))
+                .apis(RequestHandlerSelectors.basePackage("org.app.speed.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -28,7 +28,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("SwaggerUI演示")
-                .description("speend")
+                .description("speed")
                 .version("1.0")
                 .build();
     }

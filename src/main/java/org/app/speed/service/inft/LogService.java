@@ -10,4 +10,6 @@ public interface LogService {
     List<Log> selectLog();
 
     Log selectLogById(Integer id);
+
+    void deleteLog(Integer id);
 }

@@ -24,6 +24,15 @@ mybatis:
     map-underscore-to-camel-case: true
 
 ---
+## mybatis 打印SQL语句
+logging:
+  level:
+    org:
+      app:
+        speed:
+          mapper: debug
+
+---
 
 ## 服务配置
 server:

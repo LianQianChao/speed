@@ -15,21 +15,22 @@ public class GlobalExceptionHandler {
 
     /**
      * 处理自定义异常
-     * @return
+     * @return  返回
      */
     @ExceptionHandler(value = DefinitionException.class)
-    public ResultUtil defineExceptionHandler(DefinitionException de){
-        return ResultUtil.defineError(de);
+    public ResultUtil<Object> defineExceptionHandler(DefinitionException de){
+        return new ResultUtil<>().defineError(de);
     }
 
     /**
      * 处理其他异常
-     * @param e
-     * @return
+     * @param e 返回
+     * @return 返回
      */
     @ExceptionHandler(value = Exception.class)
-    public ResultUtil exceptionHandler(Exception e){
-        return ResultUtil.otherError(StatusEnum.INTERNAL_SERVER_ERROR);
+    public ResultUtil<Object> exceptionHandler(Exception e){
+        e.printStackTrace();
+        return new ResultUtil<>().otherError(StatusEnum.INTERNAL_SERVER_ERROR);
     }
 
 }

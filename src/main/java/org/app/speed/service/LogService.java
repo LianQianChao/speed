@@ -1,23 +1,20 @@
-package org.app.speed.mapper;
+package org.app.speed.service;
+
 
 import org.app.speed.model.bo.LogBO;
 import org.app.speed.model.pojo.Log;
 import org.app.speed.model.vo.LogVO;
-
-import java.util.List;
-public interface LogMapper {
-
+import org.app.speed.utils.PaginationUtil;
+public interface LogService {
 
     int insertLog(Log log);
 
-    int deleteLog(int id);
-
     int updateLog(Log log);
 
-    int selectCount(LogVO logVO);
+    int deleteLog(int id);
 
     Log selectById(int id);
 
+    PaginationUtil<LogBO> selectPagination(LogVO logVO);
 
-    List<LogBO> selectPagination(LogVO logVO);
 }

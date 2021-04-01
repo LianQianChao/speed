@@ -5,33 +5,41 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.app.speed.constant.enums.StatusEnum;
 import org.app.speed.exception.DefinitionException;
+import org.springframework.stereotype.Component;
 
+/**
+ * 构建统一请求响应结果
+ *
+ * @author Lian.QianChao
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Component
 public class ResultUtil<T> {
 
     //状态码
-    private Integer code;
+    public Integer code;
 
     //提示信息
-    private String message;
+    public String message;
 
     //数据
-    private T data;
+    public  T data;
+
 
     /**
      * 自定义异常返回的结果
      */
-    public static ResultUtil defineError(DefinitionException de){
-        return new ResultUtil(de.getCode(),de.getMessage(),null);
+    public ResultUtil<T> defineError(DefinitionException de){
+        return new ResultUtil<>(de.getCode(),de.getMessage(),null);
     }
 
     /**
      * 处理其他异常
      * @param statusEnum 状态
      */
-    public static ResultUtil otherError(StatusEnum statusEnum){
+    public ResultUtil<T> otherError(StatusEnum statusEnum){
         return success(statusEnum);
     }
 
@@ -39,16 +47,16 @@ public class ResultUtil<T> {
     /**
      * 返回成功结果
      */
-    public static ResultUtil success(){
-        return success(StatusEnum.SUCCESS);
+    public ResultUtil<T> success(){
+        return success(StatusEnum.SUCCESS,null);
     }
 
     /**
      * 返回成功结果, 封装数据
-     * @param object 数据
+     * @param data 数据
      */
-    public static ResultUtil success(Object object){
-        return success(StatusEnum.SUCCESS,object);
+    public ResultUtil<T> success(T data){
+        return success(StatusEnum.SUCCESS,data);
     }
 
 
@@ -56,7 +64,7 @@ public class ResultUtil<T> {
      * 返回成功结果，自定义状态码，不包含数据
      * ç
      */
-    public static ResultUtil success(StatusEnum statusEnum){
+    public ResultUtil<T> success(StatusEnum statusEnum){
         return success(statusEnum, null);
     }
 
@@ -64,10 +72,12 @@ public class ResultUtil<T> {
     /**
      * 返回成功结果，自定义状态码，包含数据
      * @param statusEnum 状态
-     * @param object 数据
+     * @param data 数据
      */
-    public static ResultUtil success(StatusEnum statusEnum, Object object){
-        return new ResultUtil(statusEnum.getCode(),statusEnum.getMessage(),object);
+    public ResultUtil<T> success(StatusEnum statusEnum, T data){
+        return new ResultUtil<>(statusEnum.getCode(),statusEnum.getMessage(),data);
     }
+
+
 
 }

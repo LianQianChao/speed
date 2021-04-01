@@ -1,17 +1,16 @@
-package org.app.speed.model.pojo;
+package org.app.speed.model.bo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
-
-@Data
 @AllArgsConstructor
+@Data
 @NoArgsConstructor
-public class Log implements Serializable {
+public class LogBO{
 
     private Integer id;
 
     private String message;
+
 }

@@ -1,6 +1,6 @@
 package org.app.speed.service.impl;
 
-import org.app.speed.service.inft.RedisService;
+import org.app.speed.service.RedisService;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 

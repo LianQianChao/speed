@@ -4,16 +4,45 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.app.speed.mapper.LogMapper">
 
-    <select id="selectLog" resultType="Log">
-        select * from log
-    </select>
+    <insert id="insertLog" parameterType="Log">
+        insert into log values(id,#{message})
+    </insert>
 
-    <select id="selectLogById" resultType="Log" parameterType="Integer">
+    <update id="updateLog" parameterType="Log">
+        update log set message = #{message} where id = #{id}
+    </update>
+
+    <select id="selectById" resultType="Log" parameterType="Integer">
         select * from log where id = #{id}
     </select>
 
     <delete id="deleteLog" parameterType="Integer">
         delete from log where id = #{id}
     </delete>
+
+    <select id="selectPagination" resultType="LogBO" parameterType="LogVO">
+        select * from log
+        <where>
+            <if test="id !=null">
+                id = #{id}
+            </if>
+            <if test="message != null">
+                message = #{message}
+            </if>
+        </where>
+        <if test="onPage != null and onePageSize != null">
+            limit #{index},#{onePageSize}
+        </if>
+
+    </select>
+
+    <select id="selectCount" parameterType="LogVO" resultType="Integer">
+        select count(id) from log
+        <where>
+            <if test="message != null and message != ''">
+                message = #{message}
+            </if>
+        </where>
+    </select>
 
 </mapper>

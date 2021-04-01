@@ -1,13 +1,13 @@
 package org.app.speed.controller;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.app.speed.service.inft.LogService;
+import org.app.speed.model.bo.LogBO;
+import org.app.speed.model.pojo.Log;
+import org.app.speed.model.vo.LogVO;
+import org.app.speed.service.LogService;
+import org.app.speed.utils.PaginationUtil;
 import org.app.speed.utils.ResultUtil;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -16,23 +16,43 @@ import javax.annotation.Resource;
  */
 @Api(tags = "LogController")
 @RestController
-@RequestMapping(value = "/logs")
+@RequestMapping(value = "/system")
 public class LogController {
 
     @Resource
-    private LogService logService;
-    @GetMapping(value = "/log")
-    public ResultUtil selectLog(){
+    public LogService logService;
 
-        return ResultUtil.success(logService.selectLog());
+    @Resource
+    public ResultUtil<Log> resultUtil;
+
+    @GetMapping(value = "/logs")
+    public ResultUtil<PaginationUtil<LogBO>> selectPagination(LogVO logVO){
+        PaginationUtil<LogBO> paginationUtil = logService.selectPagination(logVO);
+        return new ResultUtil<PaginationUtil<LogBO>>().success(paginationUtil);
     }
 
-    @GetMapping(value = "/log/{id}")
-    public ResultUtil selectLogById(@PathVariable("id") Integer id){
+    @PostMapping(value = "/logs")
+    public ResultUtil<Log> insertLog(Log log){
+        logService.insertLog(log);
+        return resultUtil.success();
+    }
+
+    @DeleteMapping("/logs/{id}")
+    public ResultUtil<Log> deleteLog(@PathVariable("id") int id){
         logService.deleteLog(id);
-        return ResultUtil.success();
-//        return ResultUtil.success(logService.selectLogById(id));
+        return resultUtil.success();
     }
 
+    @GetMapping(value = "/logs/{id}")
+    public ResultUtil<Log> selectById(@PathVariable("id") int id){
+        return resultUtil.success(logService.selectById(id));
+    }
+
+    @PutMapping(value = "/logs/{id}")
+    public ResultUtil<Log> updateLog(@PathVariable("id") int id,Log log){
+        log.setId(id);
+        logService.updateLog(log);
+        return resultUtil.success();
+    }
 
 }

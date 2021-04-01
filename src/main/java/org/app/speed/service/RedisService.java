@@ -1,4 +1,4 @@
-package org.app.speed.service.inft;
+package org.app.speed.service;
 
 import java.util.List;
 

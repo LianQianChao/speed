@@ -25,7 +25,7 @@ public class InterfaceAspect {
     @Before("intercept()")
     public void before(JoinPoint joinPoint){
         System.out.println("运行前");
-
+        System.out.println("测试");
         this.start_time = System.currentTimeMillis();
         //获取访问路径
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

@@ -38,7 +38,7 @@ public class LogMapperTest {
 
     @Test
     public void selectById() {
-        mapper.selectById(0);
+        mapper.selectById(1);
 
     }
 
@@ -53,8 +53,8 @@ public class LogMapperTest {
     @Test
     public void selectPagination() {
         LogVO logVO = new LogVO();
-        logVO.setOnPage(1);
-        logVO.setOnePageSize(15);
+//        logVO.setOnPage(1);
+//        logVO.setOnePageSize(15);
         mapper.selectPagination(logVO);
     }
 

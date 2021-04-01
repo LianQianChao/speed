@@ -68,5 +68,3 @@ redis:
     prefix:
       key: "app:speed:"
       expire: 120 # 验证码超期时间
-
----

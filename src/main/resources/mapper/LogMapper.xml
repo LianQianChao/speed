@@ -30,16 +30,21 @@
                 message = #{message}
             </if>
         </where>
-        <if test="onPage != null and onePageSize != null">
-            limit #{index},#{onePageSize}
-        </if>
+        <choose>
+            <when test="onPage != null and onePageSize != null">
+                limit #{index},#{onePageSize}
+            </when>
+            <otherwise>
+                limit 0,10
+            </otherwise>
+        </choose>
 
     </select>
 
     <select id="selectCount" parameterType="LogVO" resultType="Integer">
         select count(id) from log
         <where>
-            <if test="message != null and message != ''">
+            <if test="message != null">
                 message = #{message}
             </if>
         </where>

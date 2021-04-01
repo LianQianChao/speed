@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 public class LogMapperTest {
 
     @Resource
-    public  LogMapper mapper;
+    public LogMapper mapper;
 
     @Test
     public void insertLog() {
@@ -38,12 +38,12 @@ public class LogMapperTest {
 
     @Test
     public void selectById() {
-        mapper.selectById(0);
+        mapper.selectById(1);
 
     }
 
     @Test
-    public void selectCount(){
+    public void selectCount() {
         LogVO logVO = new LogVO();
         logVO.setMessage("添加信息");
         int count = mapper.selectCount(logVO);

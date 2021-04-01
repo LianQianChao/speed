@@ -1,62 +1,53 @@
 package org.app.speed.service;
 
-import java.util.List;
+import java.util.Collection;
 
-public interface RedisService {
+public interface RedisService<T> {
 
     /**
      * 存入数据
      *
-     * @param key
-     * @param value
+     * @param key key
+     * @param value value
      */
     void set(String key, Object value);
 
     /**
      * 根据key获取数据
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return return
      */
     Object get(String key);
 
     /**
      * 存入list数据
      *
-     * @param key
+     * @param key key
      */
-    void setList(String key, List list, long delta);
+    void setList(String key, Collection<T> list, long delta);
 
     /**
      * 获取list数据
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return return list
      */
-    List getList(String key);
+    Collection<T> getList(String key);
 
     /**
      * 设置数据过期时间
      *
-     * @param key
-     * @param expire
-     * @return
+     * @param key key
+     * @param expire 过期时间
      */
-    boolean expire(String key, long expire);
+    void expire(String key, long expire);
 
     /**
      * 根据key删除数据
      *
-     * @param key
+     * @param key key
      */
     void remove(String key);
 
-    /**
-     * 设置key自增长
-     *
-     * @param key
-     * @param delta
-     * @return
-     */
-    long increment(String key, long delta);
 }

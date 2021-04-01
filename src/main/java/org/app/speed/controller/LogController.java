@@ -26,30 +26,30 @@ public class LogController {
     public ResultUtil<Log> resultUtil;
 
     @GetMapping(value = "/logs")
-    public ResultUtil<PaginationUtil<LogBO>> selectPagination(LogVO logVO){
+    public ResultUtil<PaginationUtil<LogBO>> selectPagination(LogVO logVO) {
         PaginationUtil<LogBO> paginationUtil = logService.selectPagination(logVO);
         return new ResultUtil<PaginationUtil<LogBO>>().success(paginationUtil);
     }
 
     @PostMapping(value = "/logs")
-    public ResultUtil<Log> insertLog(Log log){
+    public ResultUtil<Log> insertLog(Log log) {
         logService.insertLog(log);
         return resultUtil.success();
     }
 
     @DeleteMapping("/logs/{id}")
-    public ResultUtil<Log> deleteLog(@PathVariable("id") int id){
+    public ResultUtil<Log> deleteLog(@PathVariable("id") int id) {
         logService.deleteLog(id);
         return resultUtil.success();
     }
 
     @GetMapping(value = "/logs/{id}")
-    public ResultUtil<Log> selectById(@PathVariable("id") int id){
+    public ResultUtil<Log> selectById(@PathVariable("id") int id) {
         return resultUtil.success(logService.selectById(id));
     }
 
     @PutMapping(value = "/logs/{id}")
-    public ResultUtil<Log> updateLog(@PathVariable("id") int id,Log log){
+    public ResultUtil<Log> updateLog(@PathVariable("id") int id, Log log) {
         log.setId(id);
         logService.updateLog(log);
         return resultUtil.success();

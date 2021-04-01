@@ -5,6 +5,7 @@ import org.app.speed.model.pojo.Log;
 import org.app.speed.model.vo.LogVO;
 
 import java.util.List;
+
 public interface LogMapper {
 
 

@@ -1,27 +1,21 @@
 package org.app.speed.model.vo;
 
-import lombok.*;
-import org.springframework.stereotype.Component;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Component
-public class LogVO {
+public class LogVO extends BasePaginationVO {
 
-    private Integer index;
-
-    private Integer onPage;
-
-    private Integer onePageSize;
 
     private Integer id;
 
     private String message;
 
-    public Integer getIndex(){
-        return  (onPage - 1) * onePageSize;
-    }
+
 }

@@ -27,7 +27,7 @@ public class PaginationUtil<T> {
     private final Integer onPage;
 
     //每页条数
-    private  Integer onePageSize;
+    private Integer onePageSize;
 
     //数据
     private Collection<T> data;
@@ -35,12 +35,13 @@ public class PaginationUtil<T> {
 
     /**
      * 构建分页数据结构
-     * @param onPage 当前页
+     *
+     * @param onPage      当前页
      * @param onePageSize 每页条数
-     * @param count 总条数
-     * @param data 数据
+     * @param count       总条数
+     * @param data        数据
      */
-    public PaginationUtil(Integer onPage,Integer onePageSize,Integer count, Collection<T> data){
+    public PaginationUtil(Integer onPage, Integer onePageSize, Integer count, Collection<T> data) {
         this.onPage = onPage;
         this.onePageSize = onePageSize;
         this.count = count;
@@ -58,7 +59,7 @@ public class PaginationUtil<T> {
 
     public Integer getIndexTo() {
         int count = onePageSize + getIndex();
-        if (count>=getCount() ){
+        if (count >= getCount()) {
             return getCount();
         }
         return count;

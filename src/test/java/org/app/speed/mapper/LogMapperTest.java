@@ -13,7 +13,7 @@ import javax.annotation.Resource;
 public class LogMapperTest {
 
     @Resource
-    public  LogMapper mapper;
+    public LogMapper mapper;
 
     @Test
     public void insertLog() {
@@ -43,7 +43,7 @@ public class LogMapperTest {
     }
 
     @Test
-    public void selectCount(){
+    public void selectCount() {
         LogVO logVO = new LogVO();
         logVO.setMessage("添加信息");
         int count = mapper.selectCount(logVO);
@@ -53,8 +53,8 @@ public class LogMapperTest {
     @Test
     public void selectPagination() {
         LogVO logVO = new LogVO();
-//        logVO.setOnPage(1);
-//        logVO.setOnePageSize(15);
+        logVO.setOnPage(1);
+        logVO.setOnePageSize(15);
         mapper.selectPagination(logVO);
     }
 

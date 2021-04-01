@@ -1,13 +1,15 @@
 package org.app.speed.exception;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.app.speed.constant.enums.StatusEnum;
 
 /**
  * 自定义异常
  */
-@Data
-public final class DefinitionException extends RuntimeException{
+@Getter
+@Setter
+public final class DefinitionException extends RuntimeException {
 
     //状态码
     public Integer code;
@@ -17,9 +19,10 @@ public final class DefinitionException extends RuntimeException{
 
     /**
      * 构建异常信息
+     *
      * @param statusEnum 状态枚举
      */
-    public DefinitionException(StatusEnum statusEnum){
+    public DefinitionException(StatusEnum statusEnum) {
         this.code = statusEnum.getCode();
         this.message = statusEnum.getMessage();
     }

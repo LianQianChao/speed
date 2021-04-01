@@ -5,19 +5,19 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
+import java.util.Collection;
 import java.util.concurrent.TimeUnit;
 
 @Service
-public class RedisServiceImpl implements RedisService {
+public class RedisServiceImpl implements RedisService<Object> {
 
     @Resource
-    private RedisTemplate redisTemplate;
+    public RedisTemplate<String, Object> redisTemplate;
 
 
     @Override
     public void set(String key, Object value) {
-        redisTemplate.opsForValue().set(key,value);
+        redisTemplate.opsForValue().set(key, value);
     }
 
 
@@ -27,22 +27,21 @@ public class RedisServiceImpl implements RedisService {
     }
 
 
-
     @Override
-    public void setList(String key,List list,long delta) {
-        redisTemplate.opsForList().rightPushAll(key,list);
-        expire(key,delta);
+    public void setList(String key, Collection<Object> data, long delta) {
+        redisTemplate.opsForList().rightPushAll(key, data);
+        expire(key, delta);
     }
 
     @Override
-    public List getList(String key) {
-        return redisTemplate.opsForList().range(key,0,-1);
+    public Collection<Object> getList(String key) {
+        return redisTemplate.opsForList().range(key, 0, -1);
     }
 
 
     @Override
-    public boolean expire(String key, long expire) {
-        return redisTemplate.expire(key, expire,TimeUnit.SECONDS);
+    public void expire(String key, long expire) {
+        redisTemplate.expire(key, expire, TimeUnit.SECONDS);
     }
 
 
@@ -52,8 +51,4 @@ public class RedisServiceImpl implements RedisService {
     }
 
 
-    @Override
-    public long increment(String key, long delta) {
-        return redisTemplate.opsForValue().increment(key, delta);
-    }
 }

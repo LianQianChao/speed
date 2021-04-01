@@ -18,12 +18,12 @@ public class InterfaceAspect {
     private long start_time;
 
     @Pointcut("execution(public * org.app.speed.controller.*.*(..))")
-    public void intercept(){
+    public void intercept() {
 
     }
 
     @Before("intercept()")
-    public void before(JoinPoint joinPoint){
+    public void before(JoinPoint joinPoint) {
         System.out.println("运行前");
         this.start_time = System.currentTimeMillis();
         //获取访问路径
@@ -41,20 +41,20 @@ public class InterfaceAspect {
 //        }
     }
 
-    @AfterReturning(returning = "object",pointcut = "intercept()")
-    public void doAfterReturning(Object object){
+    @AfterReturning(returning = "object", pointcut = "intercept()")
+    public void doAfterReturning(Object object) {
         System.out.println("执行成功");
     }
 
     @AfterThrowing(pointcut = "intercept()")
-    public void doAfterThrowing(){
+    public void doAfterThrowing() {
         System.out.println("程序出错");
     }
 
     @After("intercept()")
-    public void doAfter(){
+    public void doAfter() {
         long end_time = System.currentTimeMillis();
 
-        System.out.println("运行耗时："+(end_time-start_time) +"ms");
+        System.out.println("运行耗时：" + (end_time - start_time) + "ms");
     }
 }

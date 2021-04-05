@@ -28,6 +28,7 @@ public class InterfaceAspect {
         this.start_time = System.currentTimeMillis();
         //获取访问路径
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        assert attributes != null;
         HttpServletRequest request = attributes.getRequest();
 
         //请求接口路径

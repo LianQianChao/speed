@@ -48,7 +48,7 @@ public class LogServiceImpl implements LogService {
      * @param logVO 查询条件
      * @return 分页数据
      */
-    @Override
+    @Override 
     public PaginationUtil<LogBO> selectPagination(LogVO logVO) {
         return new PaginationUtil<>(logVO.getOnPage(), logVO.getOnePageSize(),
                 logMapper.selectCount(logVO), logMapper.selectPagination(logVO));

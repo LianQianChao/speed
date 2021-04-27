@@ -12,7 +12,7 @@ public class PaginationUtil<T> {
 
 
     //总条数
-    private final Integer count;
+    private Integer count;
 
     //第几条开始
     private Integer index;
@@ -24,7 +24,7 @@ public class PaginationUtil<T> {
     private Integer pageCount;
 
     //当前页
-    private final Integer onPage;
+    private Integer onPage;
 
     //每页条数
     private Integer onePageSize;
@@ -46,6 +46,14 @@ public class PaginationUtil<T> {
         this.onePageSize = onePageSize;
         this.count = count;
         this.data = data;
+    }
+
+    public void setCount(Integer count){
+        this.count = count;
+    }
+
+    public void setOnPage(Integer onPage) {
+        this.onPage = onPage;
     }
 
     public Integer getCount() {

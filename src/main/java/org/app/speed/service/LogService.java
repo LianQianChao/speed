@@ -14,6 +14,7 @@ public interface LogService {
 
     int deleteLog(int id);
 
+
     Log selectById(int id);
 
     PaginationUtil<LogBO> selectPagination(LogVO logVO);

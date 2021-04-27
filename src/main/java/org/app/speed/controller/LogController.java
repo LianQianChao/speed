@@ -23,7 +23,7 @@ public class LogController {
     public LogService logService;
 
     @Resource
-    public ResultUtil<Log> resultUtil;
+    private ResultUtil<Log> resultUtil;
 
     @GetMapping(value = "/logs")
     public ResultUtil<PaginationUtil<LogBO>> selectPagination(LogVO logVO) {

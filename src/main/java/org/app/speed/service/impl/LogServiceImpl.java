@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 public class LogServiceImpl implements LogService {
 
     @Resource
-    public LogMapper logMapper;
+    private LogMapper logMapper;
 
 
     @Override

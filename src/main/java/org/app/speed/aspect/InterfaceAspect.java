@@ -1,12 +1,18 @@
 package org.app.speed.aspect;
 
+import org.app.speed.constant.enums.StatusEnum;
+import org.app.speed.exception.DefinitionException;
+import org.app.speed.model.pojo.Resources;
+import org.app.speed.service.ResourcesService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 接口权限
@@ -14,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 @Aspect
 @Component
 public class InterfaceAspect {
+
+    @Resource
+    private ResourcesService resourcesService;
 
     private long start_time;
 
@@ -33,13 +42,27 @@ public class InterfaceAspect {
 
         //请求接口路径
         String url = request.getRequestURI();
-        //TODO 权限管理还没做
-//        if(url.equals("/test/hello")){
-//            System.out.println("访问了/test/hello接口");
-//        }else {
-//            //自定义异常
-//            throw new DefinitionException(StatusEnum.NO_AUTH);
-//        }
+        System.out.println(url);
+        List<Resources> resources = resourcesService.selectAll();
+        System.out.println("sss"+resources.get(0).getMenuUrl());
+        for (Resources resource : resources) {
+            System.out.println(resource.getMenuUrl());
+            if (url.equals(resource.getMenuUrl())) {
+                System.out.println("访问了" + resource.getMenuUrl() + "接口");
+            } else {
+                //自定义异常
+                throw new DefinitionException(StatusEnum.NO_AUTH);
+            }
+        }
+//        resources.forEach(resource -> {
+//            if (url.equals(resource.getMenuUrl())) {
+//                System.out.println("访问了" + resource.getMenuUrl() + "接口");
+//            } else {
+//                //自定义异常
+//                throw new DefinitionException(StatusEnum.NO_AUTH);
+//            }
+//        });
+
     }
 
     @AfterReturning(returning = "object", pointcut = "intercept()")

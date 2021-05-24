@@ -25,7 +25,7 @@ public class LogController {
     @Resource
     private ResultUtil<Log> resultUtil;
 
-    @GetMapping(value = "/logs")
+    @GetMapping(value = "/log")
     public ResultUtil<PaginationUtil<LogBO>> selectPagination(LogVO logVO) {
         PaginationUtil<LogBO> paginationUtil = logService.selectPagination(logVO);
         return new ResultUtil<PaginationUtil<LogBO>>().success(paginationUtil);
